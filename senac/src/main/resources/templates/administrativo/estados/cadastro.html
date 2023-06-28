@@ -53,17 +53,20 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <div class="container">
         <h1> Formulário de Cadastro </h1>
 
-        <form>
+        <form action="/salvarEstado" th:object="${estado}" method="POST">
             <div class="form-group">
+            
+       
+            
 
                 <label>id:</label>
-                <input type="text" class="form-control" placeholder="id" readonly="true">
+                <input th:field="*{id}"  type="text" class="form-control" placeholder="id" readonly="true">
 
                 <label>Nome:</label>
-                <input type="text" class="form-control" placeholder="Digite seu Nome">
+                <input th:field="*{nome}" required type="text" class="form-control" placeholder="Digite seu Nome">
 
                 <label>Sigla:</label>
-                <input type="text" class="form-control" placeholder="Digite a Sigla">
+                <input th:field="*{sigla}" required type="text" class="form-control" placeholder="Digite a Sigla">
 
             </div>
 
