@@ -68,9 +68,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
             </thead>
 
-            <tbody id="tabela" th:each="estado : ${listaEstados}">
+            <tbody >
 
-                <tr>
+                <tr th:each="estado : ${listaEstados}">
                     <td th:text="${estado.id}"></td>
                     <td th:text="${estado.nome}"></td>
                     <td th:text="${estado.sigla}"></td>
@@ -81,14 +81,16 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                     </td>
                 </tr>
 
-
-
             </tbody>
         </table>
 
 
         <a class="btn btn-danger" href="/administrativo"> <i
                 class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Voltar </a>
+        
+      <a class="btn btn-primary" href="/cadastroEstado"> <i class="fa-solid fa-plus"></i> cadastrar </a>
+                
+       
     </div>
 
 
@@ -104,8 +106,10 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+
 
     
     <script>
@@ -119,6 +123,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
             responsive: true,
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json',
+            },
+            rowReorder: {
+            	selector:'td:nth-child(	)'
             },
         });
 

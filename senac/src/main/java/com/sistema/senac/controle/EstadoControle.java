@@ -32,7 +32,6 @@ public class EstadoControle {
 			return cadastrar(estado);
 	}
 		estadoRepositorio.saveAndFlush(estado);
-
 		return cadastrar(new Estado());
 	}
 	

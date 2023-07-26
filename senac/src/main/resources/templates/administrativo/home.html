@@ -1,141 +1,179 @@
 <!DOCTYPE html>
-<html 
-xmlns:th="https://thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="https://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal</title>
-    <link rel="stylesheet" href="estilo.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principal</title>
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+.menuLateral {
+	margin-top: 5px;
+	margin-left: -50px;
+}
+
+.tamanhoImg {
+	width: 150px;
+	height: 200px;
+}
+</style>
 
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-            <img style="border-radius: 10px;" src="data:image/png;base64,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" alt="" width="30" height="30">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#"> <img
+			style="border-radius: 10px;"
+			src="data:image/png;base64,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"
+			alt="" width="30" height="30"> Atena Sis.
+		</a>
 
-            Atena Sis.</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#conteudoNavbarSuportado"
+			aria-controls="conteudoNavbarSuportado" aria-expanded="false"
+			aria-label="Alterna navegação">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
-            aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+		<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(página atual)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 
-        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+			</ul>
 
-            </ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search"
+					placeholder="Pesquisar" aria-label="Pesquisar">
+				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
+			</form>
+		</div>
+	</nav>
 
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
-        </div>
-    </nav>
-
-    <div class="container-fluid"> 
-
-
-        <div class="row">
-            <div class="col-md-3 menuLateral" >       
-                <ul >
-                    <a href="#" class="list-group-item active"> <i class="fa-solid fa-gears fa-2xl"></i> Funcionalidades  </a>
-                    <a href="#" class="list-group-item"> Efetuar Venda           </a>
-                    <a href="#" class="list-group-item"> Visualizar Vendas       </a>
-                    <a href="#" class="list-group-item"> Entrada de Produtos     </a>
-
-                    <a href="#" class="list-group-item active"> <i class="fa-solid fa-circle-plus fa-2xl"></i>  Cadastros      </a>
-                    <a href="#" class="list-group-item"> Cadastrar Funcionario   </a>
-                    <a href="#" class="list-group-item"> Cadastrar Cliente       </a>
-                    <a href="#" class="list-group-item"> Cadastrar Produto       </a>
-                    <a href="#" class="list-group-item"> Cadastrar Cidade        </a>
-                    <a href="/cadastroEstado" class="list-group-item"> Cadastrar Estado        </a>
-
-                    <a href="#" class="list-group-item active"> <i class="fa-solid fa-clipboard-list fa-2xl"></i> Listagens        </a>
-                    <a href="#" class="list-group-item"> Listar Funcionario      </a>
-                    <a href="#" class="list-group-item"> Listar Cliente          </a>
-                    <a href="#" class="list-group-item"> Listar Produto          </a>
-                    <a href="#" class="list-group-item"> Listar Cidade           </a>
-                    <a href="/listarEstado" class="list-group-item"> Listar Estado           </a>
-                  </ul>
-            </div>
-
-            <div class="col-md-9" > 
-
-                <div class="row">
-                    <div class="col-3"> 
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top tamanhoImg" src="https://blog.gs1br.org/wp-content/uploads/2017/01/venda-online-entenda-como-ela-influencia-nos-resultados-do-seu-negocio.jpeg" alt="Imagem de capa do card">
-                            <div class="card-body">
-                              <h5 class="card-title">Efetuar Venda</h5>
-                              <a href="#" class="btn btn-primary">entrar</a>
-                            </div>
-                          </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top tamanhoImg" width="150" height="200" src="https://cdn-icons-png.flaticon.com/512/3608/3608971.png" alt="Imagem de capa do card">
-                            <div class="card-body">
-                              <h5 class="card-title">Visualizar Vendas</h5>
-                              <a href="#" class="btn btn-primary">entrar</a>
-                            </div>
-                          </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top tamanhoImg"  src="https://cdn-icons-png.flaticon.com/512/753/753210.png" alt="Imagem de capa do card">
-                            <div class="card-body">
-                              <h5 class="card-title">Cadastro Cliente</h5>
-                              <a href="#" class="btn btn-primary">entrar</a>
-                            </div>
-                          </div>
-                    </div>
-
-                    <div class="col-md-3"> 
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top tamanhoImg" src="https://img.freepik.com/vetores-premium/lista-de-verificacao-no-icone-da-area-de-transferencia-com-caneta-de-vetor-isolada-no-fundo-branco-documento-de-informacoes-comerciais-para-obter-feedback-do-cliente-caixa-de-selecao-de-teste-de-exame_88813-1463.jpg" alt="Imagem de capa do card">
-                            <div class="card-body">
-                              <h5 class="card-title">Lista de clientes</h5>
-                              <a href="#" class="btn btn-primary">Entrar</a>
-                            </div>
-                          </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+	<div class="container-fluid">
 
 
+		<div class="row">
+			<div class="col-md-3 menuLateral">
+				<ul>
+					<a href="#" class="list-group-item active"> <i
+						class="fa-solid fa-gears fa-2xl"></i> Funcionalidades
+					</a>
+					<a href="/cadastroVenda" class="list-group-item"> Efetuar Venda </a>
+					<a href="/listarVenda" class="list-group-item"> Visualizar Vendas </a>
+					<a href="/cadastroEntrada" class="list-group-item"> Entrada de Produtos </a>
+					<a href="/listarEntrada" class="list-group-item"> Visualizar Entrada de Produtos </a>
+				
+
+					<a href="#" class="list-group-item active"> <i
+						class="fa-solid fa-circle-plus fa-2xl"></i> Cadastros</a>
+						
+					<a href="/cadastroFuncionario" class="list-group-item"> Cadastrar Funcionario </a>
+					<a href="/cadastroCliente" class="list-group-item"> Cadastrar Cliente </a>
+					<a href="/cadastroFornecedor" class="list-group-item"> Cadastrar Fornecedor </a>
+					<a href="/cadastroProduto" class="list-group-item"> Cadastrar Produto </a>
+					<a href="/cadastroCidade" class="list-group-item"> Cadastrar Cidade </a>
+					<a href="/cadastroEstado" class="list-group-item"> Cadastrar Estado </a>
+
+					<a href="#" class="list-group-item active"> <i
+						class="fa-solid fa-clipboard-list fa-2xl"></i> Listagens </a>
+						
+					<a href="/listarFuncionario" class="list-group-item"> Listar Funcionario </a>
+					<a href="/listarCliente" class="list-group-item"> Listar Cliente </a>
+					<a href="/listarFornecedor" class="list-group-item"> Listar Fornecedor </a>
+					<a href="/listarProduto" class="list-group-item"> Listar Produto </a>
+					<a href="/listarCidade" class="list-group-item"> Listar Cidade </a>
+					<a href="/listarEstado" class="list-group-item"> Listar Estado </a>
+				</ul>
+			</div>
+
+			<div class="col-md-9">
+
+				<div class="row">
+					<div class="col-3">
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top tamanhoImg"
+								src="https://blog.gs1br.org/wp-content/uploads/2017/01/venda-online-entenda-como-ela-influencia-nos-resultados-do-seu-negocio.jpeg"
+								alt="Imagem de capa do card">
+							<div class="card-body">
+								<h5 class="card-title">Efetuar Venda</h5>
+								<a href="/cadastroVenda" class="btn btn-primary">entrar</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top tamanhoImg" width="150" height="200"
+								src="https://cdn-icons-png.flaticon.com/512/3608/3608971.png"
+								alt="Imagem de capa do card">
+							<div class="card-body">
+								<h5 class="card-title">Visualizar Vendas</h5>
+								<a href="/listarVenda" class="btn btn-primary">entrar</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top tamanhoImg"
+								src="https://cdn-icons-png.flaticon.com/512/753/753210.png"
+								alt="Imagem de capa do card">
+							<div class="card-body">
+								<h5 class="card-title">Cadastro Cliente</h5>
+								<a href="/cadastroCliente" class="btn btn-primary">entrar</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top tamanhoImg"
+								src="https://img.freepik.com/vetores-premium/lista-de-verificacao-no-icone-da-area-de-transferencia-com-caneta-de-vetor-isolada-no-fundo-branco-documento-de-informacoes-comerciais-para-obter-feedback-do-cliente-caixa-de-selecao-de-teste-de-exame_88813-1463.jpg"
+								alt="Imagem de capa do card">
+							<div class="card-body">
+								<h5 class="card-title">Lista de clientes</h5>
+								<a href="/listarCliente" class="btn btn-primary">Entrar</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
 
 
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+		
+
 
 </body>
 

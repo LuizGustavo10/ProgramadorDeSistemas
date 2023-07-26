@@ -53,11 +53,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <div class="container">
         <h1> Formulário de Cadastro </h1>
 
-        <form action="/salvarEstado" th:object="${estado}" method="POST">
+        <form action="/salvarCidade" th:object="${cidade}" method="POST">
             <div class="form-group">
-            
-       
-            
 
                 <label>id:</label>
                 <input th:field="*{id}"  type="text" class="form-control"  readonly="readonly">
@@ -65,15 +62,23 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                 <label>Nome:</label>
                 <input th:field="*{nome}" required type="text" class="form-control" placeholder="Digite seu Nome" >
 
-                <label>Sigla:</label>
-                <input th:field="*{sigla}" required type="text" class="form-control" placeholder="Digite a Sigla">
+                <label>Cep:</label>
+                <input th:field="*{teste}" id="cep" required type="text" class="form-control" placeholder="Digite o cep">
+                
+                <label>Estado</label>
+                <select th:field="*{estado}" class="form-control">
+                  	<option th:each="est : ${listaEstados}" 
+                  	th:value="${est.id}" th:text="${est.nome}">
+                  	</option> 
+                </select>
+                
 
             </div>
 
             <button type="submit" class="btn btn-primary"> <i class="fa-solid fa-floppy-disk"></i> Salvar</button>
             <a class="btn btn-danger" href="/administrativo"> <i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Voltar </a>
             
-            <a class="btn btn-success" href="/listarEstado"> <i class="fa-solid fa-list-check"></i> listar </a>
+            <a class="btn btn-success" href="/listarCidade"> <i class="fa-solid fa-list-check"></i> listar </a>
         </form>
 
 
@@ -88,7 +93,23 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+        
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js" integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
+	<script>
+		jQuery(function($){ 
+			$("#cep").mask("99.999-999");
+		});
+	</script>
+	
+	
+		
+		
+		
+		
+		
 
+	
 </body>
 
 </html>
