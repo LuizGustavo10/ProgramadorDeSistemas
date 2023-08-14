@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sistema.senac.modelo.Cliente;
-import com.sistema.senac.repositorio.ClienteRepositorio;
+import com.sistema.senac.modelo.Fornecedor;
+import com.sistema.senac.repositorio.FornecedorRepositorio;
 import com.sistema.senac.repositorio.CidadeRepositorio;
 
 @Controller
 public class FornecedorControle {
 	
 	@Autowired
-	private ClienteRepositorio fornecedorRepositorio;
+	private FornecedorRepositorio fornecedorRepositorio;
 	@Autowired
 	private CidadeRepositorio cidadeRepositorio;
 	
-	@GetMapping("/cadastroCliente")
-	public ModelAndView cadastrar(Cliente fornecedor) { 
+	@GetMapping("/cadastroFornecedor")
+	public ModelAndView cadastrar(Fornecedor fornecedor) { 
 		ModelAndView mv = new ModelAndView("administrativo/fornecedores/cadastro");
 		mv.addObject("listaCidades", cidadeRepositorio.findAll());
 		mv.addObject("fornecedor",fornecedor);
@@ -32,31 +32,31 @@ public class FornecedorControle {
 	}
 	
 	
-	@PostMapping("/salvarCliente")
-	public ModelAndView salvar(Cliente fornecedor, BindingResult result) { 
+	@PostMapping("/salvarFornecedor")
+	public ModelAndView salvar(Fornecedor fornecedor, BindingResult result) { 
 		if(result.hasErrors()) {
 			return cadastrar(fornecedor);
 	}
 		fornecedorRepositorio.saveAndFlush(fornecedor);
-		return cadastrar(new Cliente());
+		return cadastrar(new Fornecedor());
 	}
 	
-	@GetMapping("/listarCliente")
+	@GetMapping("/listarFornecedor")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("administrativo/fornecedores/lista");
-		mv.addObject("listaClientes", fornecedorRepositorio.findAll());
+		mv.addObject("listaFornecedores", fornecedorRepositorio.findAll());
 		return mv;	
 	}
 	
-	@GetMapping("/editarCliente/{id}")
+	@GetMapping("/editarFornecedor/{id}")
 	public ModelAndView editar(@PathVariable("id") Long id) {
-		Optional<Cliente> fornecedor = fornecedorRepositorio.findById(id);  //busca fornecedor por id e armazena
+		Optional<Fornecedor> fornecedor = fornecedorRepositorio.findById(id);  //busca fornecedor por id e armazena
 		return cadastrar(fornecedor.get());		   //chama função cadastrar e carrega valores nela
 	}
 	
-	@GetMapping("/removerCliente/{id}")
+	@GetMapping("/removerFornecedor/{id}")
 	public ModelAndView remover(@PathVariable("id") Long id) {
-		Optional<Cliente> fornecedor = fornecedorRepositorio.findById(id);
+		Optional<Fornecedor> fornecedor = fornecedorRepositorio.findById(id);
 		fornecedorRepositorio.delete(fornecedor.get());
 		return listar();
 	}

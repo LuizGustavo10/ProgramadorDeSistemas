@@ -53,30 +53,46 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         <h1> Listagem </h1>
-        
+
         <table id="tabela" class="table table-striped">
+
             <thead class="bg-primary table-dark">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Sigla</th>
+                    <th scope="col">Código de Barras</th>
+                    <th scope="col">Unidade de Medida</th>
+                    <th scope="col">Estoque</th>
+                    <th scope="col">Preço de Custo</th>
+                    <th scope="col">Preço de Venda</th>
+                    <th scope="col">Lucro</th>
+                    <th scope="col">Margem de Lucro</th>
                     <th scope="col">Opções</th>
                 </tr>
+
             </thead>
 
             <tbody >
-                <tr th:each="estado : ${listaEstados}">
-                    <td th:text="${estado.id}"></td>
-                    <td th:text="${estado.nome}"></td>
-                    <td th:text="${estado.sigla}"></td>
+
+                <tr th:each="produto : ${listaProdutos}">
+                    <td th:text="${produto.id}"></td>
+                    <td th:text="${produto.nome}"></td>
+                    <td th:text="${produto.codigoBarras}"></td>
+                    <td th:text="${produto.unidadeMedida}"></td>
+                    <td th:text="${produto.estoque}"></td>
+                    <td th:text="${produto.precoCusto}"></td>
+                    <td th:text="${produto.precoVenda}"></td>
+                    <td th:text="${produto.lucro}"></td>
+                    <td th:text="${produto.margemLucro}"></td>
                     <td colspan="2">
-                        <a th:href="@{/editarEstado/{id}(id=${estado.id})}" class="m-3"> <i class="fa-solid fa-pen-to-square" style="color: #2c6fe2;"></i>
+                        <a th:href="@{/editarProduto/{id}(id=${produto.id})}" class="m-3"> <i class="fa-solid fa-pen-to-square" style="color: #2c6fe2;"></i>
                         </a>
-                        <a th:href="@{/removerEstado/{id}(id=${estado.id})}"><i class="fa-solid fa-trash-can" style="color: #d24931;"></i></a>
+                        <a th:href="@{/removerProduto/{id}(id=${produto.id})}"><i class="fa-solid fa-trash-can" style="color: #d24931;"></i></a>
                     </td>
                 </tr>
+
             </tbody>
         </table>
 
@@ -84,7 +100,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         <a class="btn btn-danger" href="/administrativo"> <i
                 class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Voltar </a>
         
-      <a class="btn btn-primary" href="/cadastroEstado"> <i class="fa-solid fa-plus"></i> cadastrar </a>
+      <a class="btn btn-primary" href="/cadastroProduto"> <i class="fa-solid fa-plus"></i> cadastrar </a>
                 
        
     </div>
